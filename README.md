@@ -1,18 +1,5 @@
-
-
-
-
-
-
-
-
-
-
-
-
 # Storefront Backend
 ### Installation Instructions
----
 ### You need to run the following to install npm before anything:
 `npm init`
 
@@ -44,7 +31,8 @@ NOTE: Make sure that you run `npm run build` before `npm run test` if you edit t
 The application runs on port `3000` with database on `3000`.
 
 ### Environment variables
-`PORT=3000
+```
+PORT=3000
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_DB=storefront_dev
@@ -54,7 +42,8 @@ POSTGRES_PASSWORD=secret
 ENV=dev
 BCRYPT_PASSWORD = speak-friend-and-enter
 SALT_ROUNDS = 10
-TOKEN_SECRET = alohomora123`
+TOKEN_SECRET = alohomora123
+```
 
 ## This project contains 9 RESTful APIs
 ### Finally you will have to test the APIs and they are the following 
