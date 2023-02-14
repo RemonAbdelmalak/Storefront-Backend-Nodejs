@@ -28,7 +28,7 @@ To install the app's dependencies and use the app in test mode, run the followin
 NOTE: Make sure that you run `npm run build` before `npm run test` if you edit the code
 
 ### Ports
-The application runs on port `3000` with database on `3000`.
+The application runs on port `3000` with database on `5432`.
 
 ### Environment variables
 ```
