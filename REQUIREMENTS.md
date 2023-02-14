@@ -24,7 +24,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 -  id
 - name
 - price
-```psql
+```sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE products (
@@ -40,7 +40,7 @@ CREATE TABLE products (
 - firstName
 - lastName
 - password
-```psql
+```sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE users (
@@ -58,7 +58,7 @@ CREATE TABLE users (
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
-```psql
+```sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE orders (
