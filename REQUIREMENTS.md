@@ -5,30 +5,52 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index 
-- Show (args: product id)
-- Create (args: Product)[token required]
+- Index (GET `/api/products/`)
+- Show (args: product id) (GET `/api/products/:id`)
+- Create (args: Product)[token required](POST `/api/products/create`)
 
 #### Users
-- Index [token required]
-- Show (args: id)[token required]
-- Create (args: User)[token required]
+- Index [token required](GET `/api/users/`)
+- Show (args: id)[token required](GET `/api/users/:id`)
+- Create (args: User)[token required](POST `/api/users/create`)
 
 
 #### Orders
-- Current Order by user (args: user id)[token required]
+- Current Order by user (args: user id)[token required](GET `/api/orders/`)
+- Create Order by user [token required](POST `/api/orders/`)
 
 ## Data Shapes
 #### Product
 -  id
 - name
 - price
+```
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE products (
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    name VARCHAR(50),
+    price FLOAT
+);
+```
 
 #### User
 - id
 - firstName
 - lastName
 - password
+```
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE users (
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    password VARCHAR(250)
+);
+```
 
 #### Orders
 - id
@@ -36,3 +58,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+```
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE orders (
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    user_id uuid REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    product_id uuid REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    quantity INTEGER NOT NULL,
+    order_status VARCHAR(50) NOT NULL
+);
+```
