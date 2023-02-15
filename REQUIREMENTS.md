@@ -17,7 +17,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - Current Order by user (args: user id)[token required](GET `/api/orders/`)
-- Create Order by user [token required](POST `/api/orders/`)
+- Create Order by user [token required](POST `/api/orders/create`)
+- Add Product in Order [token required](POST `/api/orders/addorderproduct/:id`)
 
 ## Data Shapes
 #### Product
@@ -68,5 +69,22 @@ CREATE TABLE orders (
     product_id uuid REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE,
     quantity INTEGER NOT NULL,
     order_status VARCHAR(50) NOT NULL
+);
+```
+
+#### Order_Products
+- id
+- Order_id
+- Product_id
+- quantity of each product in the order
+```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE order_product(
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    order_id uuid REFERENCES orders(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    product_id uuid REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    quantity INTEGER NOT NULL
 );
 ```

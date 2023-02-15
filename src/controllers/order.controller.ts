@@ -28,6 +28,35 @@ export const create = async (
   }
 };
 
+export const addProductToOrder = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+    try {
+        jwt.verify(req.body.token , process.env.TOKEN_SECRET!)
+      } 
+    catch (error)
+     {
+        res.status(401)
+        res.json(`invalid token ${error}`)
+        return
+      }
+      const orderId: string = req.params.id
+      const productId: string = req.body.product_id
+      const quantity: number = req.body.quantity
+  try {
+    const orderProduct = await ordermodel.addProductToOrder(orderId,productId,quantity);
+    res.json({
+    status: "success",
+    Token: {orderProduct},
+    message: "Product added in order successfully",
+  });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const show = async (
   req: Request,
   res: Response,
