@@ -44,5 +44,75 @@ BCRYPT_PASSWORD = speak-friend-and-enter
 SALT_ROUNDS = 10
 TOKEN_SECRET = alohomora123
 ```
+
+## Data Shapes
+#### Product
+-  id
+- name
+- price
+```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE products (
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    name VARCHAR(50),
+    price FLOAT
+);
+```
+
+#### User
+- id
+- firstName
+- lastName
+- password
+```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE users (
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    password VARCHAR(250)
+);
+```
+
+#### Orders
+- id
+- id of each product in the order
+- quantity of each product in the order
+- user_id
+- status of order (active or complete)
+```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE orders (
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    user_id uuid REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    product_id uuid REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    quantity INTEGER NOT NULL,
+    order_status VARCHAR(50) NOT NULL
+);
+```
+
+#### Order_Products
+- id
+- Order_id
+- Product_id
+- quantity of each product in the order
+```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE order_product(
+
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    order_id uuid REFERENCES orders(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    product_id uuid REFERENCES products(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    quantity INTEGER NOT NULL
+);
+```
+
 # Thanks for reading
 - Remon Abdelmalak :)

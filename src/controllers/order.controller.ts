@@ -9,13 +9,6 @@ export const create = async (
   res: Response,
   next: NextFunction
 ) => {
-    try {
-        jwt.verify(req.body.token , process.env.TOKEN_SECRET!)
-      } catch (error) {
-        res.status(401)
-        res.json(`invalid token ${error}`)
-        return
-      }
   try {
     const order = await ordermodel.create(req.body);
     res.json({
