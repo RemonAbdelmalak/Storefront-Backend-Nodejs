@@ -1,6 +1,8 @@
 import supertest from 'supertest'
 import app from '../../server'
 
+const token: string = process.env.TOKEN_SECRET as string;
+
 describe("User Routes", ()=>{
 
     describe('GET /api/users', function () {
@@ -12,8 +14,17 @@ describe("User Routes", ()=>{
         });
     });
 
+    describe('GET /api/users/:id', function () {
+        it('respond with json containing a user', async function (done) {
+            supertest(app)
+                .get('/api/users/:id')
+                .set('Accept', 'application/json')
+                .expect(401, done);
+        });
+    });
 
-    describe('POST /api/users', function () {
+
+    describe('POST /api/users/create', function () {
         const data = {
             "first_name": "fnametest",
             "last_name": "lnametest",
@@ -21,7 +32,7 @@ describe("User Routes", ()=>{
         }
         it('respond with 201 created', function (done) {
             supertest(app)
-            .post('/api/users')
+            .post('/api/users/create')
             .send(data)
             .set('Accept', 'application/json')
             .expect(201)
