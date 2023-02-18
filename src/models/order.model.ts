@@ -45,6 +45,18 @@ class Ordermodel {
     }
   }
 
+  async index(): Promise<Order[]> {
+    try {
+      const conn = await client.connect();
+      const sql = "SELECT * from orders";
+      const result = await conn.query(sql);
+      conn.release();
+      return result.rows;
+    } catch (error) {
+      throw new Error(`Error at retrieving order ${(error as Error).message}`);
+    }
+  }
+
 }
 
 export default Ordermodel;

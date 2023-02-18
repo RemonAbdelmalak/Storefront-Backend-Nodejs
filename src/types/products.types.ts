@@ -1,7 +1,7 @@
 type Product = {
     id?:String;
     name: String;
-    price: Float32Array;
+    price: Number;
   };
   
   export default Product;

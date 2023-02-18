@@ -37,7 +37,7 @@ class Productmodel {
       conn.release();
       return result.rows;
     } catch (error) {
-      throw new Error(`Error at retrieving users ${(error as Error).message}`);
+      throw new Error(`Error at retrieving product ${(error as Error).message}`);
     }
   }
 

@@ -63,11 +63,29 @@ export const show = async (
         return
       }
   try {
-    const product = await ordermodel.show(req.params.id as unknown as string);
+    const order = await ordermodel.show(req.params.id as unknown as string);
     res.json({
       status: "success",
-      data: product,
-      message: "product retrieved successfully",
+      data: order,
+      message: "order retrieved successfully",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+export const index = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const orders = await ordermodel.index();
+    res.json({
+      status: "success",
+      data: orders,
+      message: "orders retrieved successfully",
     });
   } catch (err) {
     next(err);
