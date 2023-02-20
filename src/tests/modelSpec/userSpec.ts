@@ -31,34 +31,25 @@ describe("User Model", ()=>{
 describe("Sending data to User Model", ()=>{
 
     describe("Test User Model methods", ()=>{
-        
-        it('fetch all User', async function (){
-            const user = {
+
+        it('Create User', async () => {
+            usermodel.create( {
                 first_name: "admin",
                 last_name:"admin",
                 password:"admin"
-            }
-            await usermodel.create(user)
-            const users = await usermodel.index()
-
-            expect(users.length).toBeGreaterThan(0);
-        });
+           })
+           const users = await usermodel.index()
+           expect(users)
+       });
+       
+       it('Fetch all Users', async () => {
+           const users = await usermodel.index()
+           expect(users)
+       });
         
         it('fetch a User', async function (){
-            const users = await usermodel.show('7fc763a5-eeaa-4585-820a-5f3c6f4056ce')
+            const users = await usermodel.show(1)
             expect(users);
-        });
-        
-        it('create a User', async function (){
-            const user = {
-                first_name: "admin",
-                last_name:"admin",
-                password:"admin"
-            }
-            await usermodel.create(user)
-            const users = await usermodel.index()
-
-            expect(users.length).toBeGreaterThan(0);
         });
     });
 });

@@ -1,6 +1,6 @@
 type Order = {
-    id?:String;
-    user_id: String;
+    id?:Number;
+    user_id: Number;
     order_status: String;
   };
   

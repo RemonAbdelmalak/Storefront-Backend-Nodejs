@@ -1,7 +1,7 @@
 type Order_Product = {
-    id?:String;
-    order_id: String;
-    product_id: String;
+    id?: Number;
+    order_id: Number;
+    product_id: Number;
     quantity: Number;
   };
   

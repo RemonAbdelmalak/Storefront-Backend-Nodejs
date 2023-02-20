@@ -34,7 +34,7 @@ export const show = async (
         return
       }
   try {
-    const product = await productModel.show(req.params.id as unknown as string);
+    const product = await productModel.show(req.params.id as unknown as number);
     res.json({
       status: "success",
       data: product,

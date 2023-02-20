@@ -18,7 +18,7 @@ class Ordermodel {
     }
   }
 
-  async addProductToOrder(order_id: string, product_id: string, quantity: number): Promise<Order[]> {
+  async addProductToOrder(order_id: number, product_id: number, quantity: number): Promise<Order_Product[]> {
     try {
       const sql =
       `INSERT INTO order_product (order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING *`;
@@ -32,7 +32,7 @@ class Ordermodel {
     }
   }
   
-  async show(id: string): Promise<Order> {
+  async show(id: number): Promise<Order> {
     try {
       const sql = `SELECT * FROM orders WHERE user_id = ($1)`;
       const conn = await client.connect();

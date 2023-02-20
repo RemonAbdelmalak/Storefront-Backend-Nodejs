@@ -1,5 +1,5 @@
 type Product = {
-    id?:String;
+    id?:Number;
     name: String;
     price: Number;
   };

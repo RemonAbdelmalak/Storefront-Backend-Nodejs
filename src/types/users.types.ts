@@ -1,5 +1,5 @@
 type User = {
-    id?:String;
+    id?:Number;
     first_name: String;
     last_name: String;
     password: String;

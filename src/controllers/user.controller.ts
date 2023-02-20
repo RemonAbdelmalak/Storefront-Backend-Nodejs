@@ -9,13 +9,6 @@ export const create = async (
   res: Response,
   next: NextFunction
 ) => {
-    try {
-        jwt.verify(req.body.token , process.env.TOKEN_SECRET!)
-      } catch (error) {
-        res.status(401)
-        res.json(`invalid token ${error}`)
-        return
-      }
   try {
     const user = await userModel.create(req.body);
     var token = jwt.sign({user: user}, process.env.TOKEN_SECRET!);
@@ -42,7 +35,7 @@ export const show = async (
         return
       }
   try {
-    const user = await userModel.show(req.params.id as unknown as string);
+    const user = await userModel.show(req.params.id as unknown as number);
     res.json({
       status: "success",
       data: user,

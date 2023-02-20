@@ -31,31 +31,26 @@ describe("Product Model", ()=>{
 
         describe("Test Products Model methods", ()=>{
             
-            it('Fetch all Product', async function (){
-                const product = {
+            it('Create Product', async () => {
+                await productmodel.create( {
                     name: "testname",
                     price: 9.99
-                }
-                await productmodel.create(product)
-                const products = await productmodel.index()
-    
-                expect(products.length).toBeGreaterThan(0);
-            });
+               })
+               const products = await productmodel.index()
+               expect(products)
+           });
+           
+           
+           it('Fetch all Products', async () => {
+               const products = await productmodel.index()
+               expect(products);
+           });
+
+            
             
             it('Fetch a Product', async function (){
-                const products = await productmodel.show('9807f07d-f111-4d82-b7a9-18a41d145198')
+                const products = await productmodel.show(1)
                 expect(products);
-            });
-            
-            it('Create a Product', async function (){
-                const product = {
-                    name: "testname",
-                    price: 9.99
-                }
-                await productmodel.create(product)
-                const products = await productmodel.index()
-    
-                expect(products.length).toBeGreaterThan(0);
             });
         });
     

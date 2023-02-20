@@ -35,8 +35,8 @@ export const addProductToOrder = async (
         res.json(`invalid token ${error}`)
         return
       }
-      const orderId: string = req.params.id
-      const productId: string = req.body.product_id
+      const orderId: number = req.params.id
+      const productId: number = req.body.product_id
       const quantity: number = req.body.quantity
   try {
     const orderProduct = await ordermodel.addProductToOrder(orderId,productId,quantity);
@@ -63,7 +63,7 @@ export const show = async (
         return
       }
   try {
-    const order = await ordermodel.show(req.params.id as unknown as string);
+    const order = await ordermodel.show(req.params.id as unknown as number);
     res.json({
       status: "success",
       data: order,
